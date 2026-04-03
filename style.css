@@ -1,0 +1,422 @@
+/* ── Variables ── */
+:root {
+  --cream: #FAF7F2;
+  --green: #3D6B4F;
+  --green-light: #EBF3ED;
+  --green-mid: #C2DCCA;
+  --green-dark: #1E3D2B;
+  --amber: #D4845A;
+  --amber-light: #FAF0E8;
+  --text: #1A1A1A;
+  --text-muted: #6B7A6E;
+  --border: #D8E8DB;
+  --white: #FFFFFF;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+/* ── Reset ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── Header ── */
+header {
+  background: var(--green-dark);
+  padding: 2rem 1.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.header-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--green-mid);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+header h1 em {
+  font-style: italic;
+  color: var(--green-mid);
+}
+
+header p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 300;
+}
+
+/* ── Main ── */
+main {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+}
+
+.card-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* ── Month selector ── */
+.months-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.month-btn {
+  padding: 10px 6px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.month-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-light);
+}
+
+.month-btn.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+
+.stage-hint {
+  display: block;
+  font-size: 9px;
+  font-weight: 400;
+  margin-top: 2px;
+  opacity: 0.7;
+}
+
+/* ── Option buttons ── */
+.options-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.opt-btn {
+  padding: 6px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  background: transparent;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.opt-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.opt-btn.active {
+  background: var(--green-light);
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 500;
+}
+
+.opt-btn.allergy.active {
+  background: var(--amber-light);
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+/* ── Generate button ── */
+.gen-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--green);
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.gen-btn:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+}
+
+.gen-btn:active {
+  transform: translateY(0);
+}
+
+.gen-btn:disabled {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Result ── */
+.result-wrap {
+  animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.stage-banner {
+  background: var(--green-dark);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.stage-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 6px;
+}
+
+.stage-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+
+.stage-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 10px 8px;
+}
+
+.stat-item .s-label {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+}
+
+.stat-item .s-val {
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+}
+
+/* ── Section cards ── */
+.section-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.section-header {
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-icon {
+  font-size: 16px;
+}
+
+.section-title-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.section-body {
+  padding: 14px 16px;
+}
+
+/* ── Pills ── */
+.pill-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pill-green   { background: var(--green-light); color: var(--green-dark); }
+.pill-amber   { background: var(--amber-light); color: #8B4513; }
+.pill-seasonal { background: var(--green); color: white; }
+
+/* ── Day plan list ── */
+.day-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.day-item:last-child {
+  border-bottom: none;
+}
+
+.day-badge {
+  min-width: 28px;
+  height: 28px;
+  background: var(--green-light);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green-dark);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.menu-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.recipe-txt {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* ── Tip box ── */
+.tip-box {
+  background: var(--amber-light);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.tip-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.tip-text {
+  font-size: 13px;
+  color: #7A4020;
+  line-height: 1.6;
+}
+
+/* ── Reset button ── */
+.reset-btn {
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.reset-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-light);
+}
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 11px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+.footer-sub {
+  color: #B0BDB3;
+}
